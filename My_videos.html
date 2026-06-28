@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Video Gallery</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, sans-serif;
+    }
+
+    body{
+        background:#f4f4f4;
+    }
+
+    header{
+        background:#ff0000;
+        color:white;
+        text-align:center;
+        padding:20px;
+        font-size:30px;
+        font-weight:bold;
+    }
+
+    .video-container{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+        gap:20px;
+        padding:20px;
+    }
+
+    .video-card{
+        background:white;
+        border-radius:10px;
+        overflow:hidden;
+        box-shadow:0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .video-card iframe{
+        width:100%;
+        height:220px;
+        border:none;
+    }
+
+    .title{
+        padding:10px;
+        text-align:center;
+        font-weight:bold;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    My YouTube Video Gallery
+</header>
+
+<div class="video-container">
+
+    <!-- Video 1 -->
+    <div class="video-card">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/PO_NeK6TXnM?si=OaK18Xm0JMYIIp69" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        <div class="title">Circle</div>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-card">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/0BM4AXH6AUs?si=Gw7WAY4BnFRwzwCm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        <div class="title">Swami Vivekananda</div>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="video-card">
+        
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/YGi9TKbhCns?si=L6YTqxXGQLlNYZkZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        <div class="title">Basic Reflection of Science</div>
+    </div>
+
+    <!-- Video 4 -->
+    <div class="video-card">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/upI6DfXTwQM?si=0B80wcbWuUodc8MI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="title">Basic GK</div>
+    </div>
+
+    <!-- Video 5 -->
+    <div class="video-card">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/KDk-qN0G4rk?si=ieFsWyktp3qQ0O3S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        <div class="title">Special Day</div>
+    </div>
+
+    <!-- Video 6 -->
+    <div class="video-card">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/NHpAMUkgvA8?si=QaxGhnJoRTILzfsB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        <div class="title">Types of Angle</div>
+    </div>
+
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saurav World - Typing Test</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#06b6d4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:1000px;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:30px;
+    color:white;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+    font-size:40px;
+}
+
+.subtitle{
+    text-align:center;
+    margin-bottom:25px;
+    color:#dbeafe;
+}
+
+.controls{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+select,button{
+    padding:12px 18px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    background:#22c55e;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#16a34a;
+}
+
+#timer{
+    text-align:center;
+    font-size:36px;
+    font-weight:bold;
+    margin:20px 0;
+    color:#facc15;
+}
+
+#sampleText{
+    background:white;
+    color:#111827;
+    padding:20px;
+    border-radius:12px;
+    min-height:120px;
+    line-height:1.8;
+    font-size:20px;
+}
+
+textarea{
+    width:100%;
+    height:180px;
+    margin-top:20px;
+    border:none;
+    border-radius:12px;
+    padding:15px;
+    font-size:20px;
+    resize:none;
+}
+
+#result{
+    margin-top:25px;
+    background:rgba(255,255,255,0.15);
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
+    font-size:22px;
+}
+
+.footer{
+    text-align:center;
+    margin-top:20px;
+    color:#cbd5e1;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⌨️ Saurav World</h1>
+
+<p class="subtitle">
+English & Hindi (Mangal/Inscript) Typing Test
+</p>
+
+<div class="controls">
+
+<select id="language">
+<option value="english">English</option>
+<option value="hindi">Hindi (Mangal)</option>
+</select>
+
+<select id="duration">
+<option value="2">2 Minutes</option>
+<option value="5">5 Minutes</option>
+<option value="10">10 Minutes</option>
+<option value="15">15 Minutes</option>
+<option value="20">20 Minutes</option>
+</select>
+
+<button onclick="startTest()">Start Test</button>
+
+<button onclick="finishTest()">Submit</button>
+
+</div>
+
+<div id="timer">00:00</div>
+
+<div id="sampleText">
+Click Start Test to begin.
+</div>
+
+<textarea
+id="typingArea"
+placeholder="Start typing here..."
+disabled>
+</textarea>
+
+<div id="result">
+Results will appear here.
+</div>
+
+<div class="footer">
+© 2026 Saurav World | Typing Practice Portal
+</div>
+
+</div>
+
+<script>
+
+const englishText =
+"India is a great country in this world having a diversity of people and nature. Here you can get every kind of weather condition and every kind of terrian. India in past had been a golden bird and today india is a developing country Although India is very friendly country who has friendishp with most of the country. World can be more developed and sustainabled with the help of India. India is a country who never intiate violence with any country but his neighbour countries are not so much happy as per news but any way india plays an important role in world to bring peace and sustainability. Let's pledge we will never let it down. Jai Ma Bharti.";
+
+const hindiText =
+"भारत एक महान देश है। नियमित टाइपिंग अभ्यास से गति और शुद्धता बढ़ती है। हिंदी मंगल इंसक्रिप्ट कीबोर्ड का अभ्यास करके आप अपनी टाइपिंग क्षमता को बेहतर बना सकते हैं।";
+
+let originalText="";
+let timeLeft=0;
+let timer;
+
+function startTest(){
+
+let language =
+document.getElementById("language").value;
+
+let duration =
+parseInt(document.getElementById("duration").value);
+
+originalText =
+language==="english"
+? englishText
+: hindiText;
+
+document.getElementById("sampleText").innerText =
+originalText;
+
+document.getElementById("typingArea").value="";
+document.getElementById("typingArea").disabled=false;
+document.getElementById("typingArea").focus();
+
+timeLeft=duration*60;
+
+clearInterval(timer);
+
+updateTimer();
+
+timer=setInterval(()=>{
+
+timeLeft--;
+
+updateTimer();
+
+if(timeLeft<=0){
+clearInterval(timer);
+finishTest();
+}
+
+},1000);
+}
+
+function updateTimer(){
+
+let min=Math.floor(timeLeft/60);
+let sec=timeLeft%60;
+
+document.getElementById("timer").innerText=
+String(min).padStart(2,"0")+
+":"+
+String(sec).padStart(2,"0");
+}
+
+function finishTest(){
+
+clearInterval(timer);
+
+document.getElementById("typingArea").disabled=true;
+
+let typed=
+document.getElementById("typingArea").value;
+
+let duration=
+parseInt(document.getElementById("duration").value);
+
+let words=
+typed.trim().split(/\s+/).filter(Boolean).length;
+
+let wpm=
+Math.round(words/duration);
+
+let correct=0;
+
+for(let i=0;i<typed.length;i++){
+if(typed[i]===originalText[i]){
+correct++;
+}
+}
+
+let accuracy=
+((correct/originalText.length)*100).toFixed(2);
+
+document.getElementById("result").innerHTML=
+`
+<h2>🏆 Test Result</h2>
+<br>
+<p>⌨️ Words Typed: <b>${words}</b></p>
+<p>⚡ Speed: <b>${wpm} WPM</b></p>
+<p>🎯 Accuracy: <b>${accuracy}%</b></p>
+`;
+}
+
+</script>
+
+</body>
+</html>

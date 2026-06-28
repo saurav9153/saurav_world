@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Countries and Capitals</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    margin:0;
+    padding:20px;
+    color:white;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+#search{
+    width:100%;
+    padding:12px;
+    font-size:16px;
+    border:none;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+.table-container{
+    max-height:80vh;
+    overflow-y:auto;
+    background:white;
+    color:black;
+    border-radius:10px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#2a5298;
+    color:white;
+    position:sticky;
+    top:0;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:left;
+}
+
+tr:nth-child(even){
+    background:#f2f2f2;
+}
+
+tr:hover{
+    background:#dfefff;
+}
+</style>
+</head>
+<body>
+
+<h1>🌍 World Countries and Capitals</h1>
+
+<input type="text" id="search" placeholder="Search Country or Capital...">
+
+<div class="table-container">
+<table id="countryTable">
+<thead>
+<tr>
+<th>S.No</th>
+<th>Country</th>
+<th>Capital</th>
+</tr>
+</thead>
+<tbody>
+
+<tr><td>1</td><td>Afghanistan</td><td>Kabul</td></tr>
+<tr><td>2</td><td>Albania</td><td>Tirana</td></tr>
+<tr><td>3</td><td>Algeria</td><td>Algiers</td></tr>
+<tr><td>4</td><td>Andorra</td><td>Andorra la Vella</td></tr>
+<tr><td>5</td><td>Angola</td><td>Luanda</td></tr>
+<tr><td>6</td><td>Argentina</td><td>Buenos Aires</td></tr>
+<tr><td>7</td><td>Armenia</td><td>Yerevan</td></tr>
+<tr><td>8</td><td>Australia</td><td>Canberra</td></tr>
+<tr><td>9</td><td>Austria</td><td>Vienna</td></tr>
+<tr><td>10</td><td>Azerbaijan</td><td>Baku</td></tr>
+
+<tr><td>11</td><td>Bahamas</td><td>Nassau</td></tr>
+<tr><td>12</td><td>Bahrain</td><td>Manama</td></tr>
+<tr><td>13</td><td>Bangladesh</td><td>Dhaka</td></tr>
+<tr><td>14</td><td>Barbados</td><td>Bridgetown</td></tr>
+<tr><td>15</td><td>Belarus</td><td>Minsk</td></tr>
+<tr><td>16</td><td>Belgium</td><td>Brussels</td></tr>
+<tr><td>17</td><td>Belize</td><td>Belmopan</td></tr>
+<tr><td>18</td><td>Benin</td><td>Porto-Novo</td></tr>
+<tr><td>19</td><td>Bhutan</td><td>Thimphu</td></tr>
+<tr><td>20</td><td>Bolivia</td><td>Sucre</td></tr>
+
+<tr><td>21</td><td>Brazil</td><td>Brasília</td></tr>
+<tr><td>22</td><td>Brunei</td><td>Bandar Seri Begawan</td></tr>
+<tr><td>23</td><td>Bulgaria</td><td>Sofia</td></tr>
+<tr><td>24</td><td>Burkina Faso</td><td>Ouagadougou</td></tr>
+<tr><td>25</td><td>Burundi</td><td>Gitega</td></tr>
+
+<tr><td>26</td><td>Cambodia</td><td>Phnom Penh</td></tr>
+<tr><td>27</td><td>Cameroon</td><td>Yaoundé</td></tr>
+<tr><td>28</td><td>Canada</td><td>Ottawa</td></tr>
+<tr><td>29</td><td>Cape Verde</td><td>Praia</td></tr>
+<tr><td>30</td><td>Central African Republic</td><td>Bangui</td></tr>
+
+<tr><td>31</td><td>Chad</td><td>N'Djamena</td></tr>
+<tr><td>32</td><td>Chile</td><td>Santiago</td></tr>
+<tr><td>33</td><td>China</td><td>Beijing</td></tr>
+<tr><td>34</td><td>Colombia</td><td>Bogotá</td></tr>
+<tr><td>35</td><td>Comoros</td><td>Moroni</td></tr>
+
+<tr><td>36</td><td>Congo</td><td>Brazzaville</td></tr>
+<tr><td>37</td><td>Costa Rica</td><td>San José</td></tr>
+<tr><td>38</td><td>Croatia</td><td>Zagreb</td></tr>
+<tr><td>39</td><td>Cuba</td><td>Havana</td></tr>
+<tr><td>40</td><td>Cyprus</td><td>Nicosia</td></tr>
+
+<tr><td>41</td><td>Czech Republic</td><td>Prague</td></tr>
+<tr><td>42</td><td>Denmark</td><td>Copenhagen</td></tr>
+<tr><td>43</td><td>Djibouti</td><td>Djibouti</td></tr>
+<tr><td>44</td><td>Dominica</td><td>Roseau</td></tr>
+<tr><td>45</td><td>Dominican Republic</td><td>Santo Domingo</td></tr>
+
+<tr><td>46</td><td>Ecuador</td><td>Quito</td></tr>
+<tr><td>47</td><td>Egypt</td><td>Cairo</td></tr>
+<tr><td>48</td><td>El Salvador</td><td>San Salvador</td></tr>
+<tr><td>49</td><td>Estonia</td><td>Tallinn</td></tr>
+<tr><td>50</td><td>Eswatini</td><td>Mbabane</td></tr>
+
+<tr><td>51</td><td>Ethiopia</td><td>Addis Ababa</td></tr>
+<tr><td>52</td><td>Fiji</td><td>Suva</td></tr>
+<tr><td>53</td><td>Finland</td><td>Helsinki</td></tr>
+<tr><td>54</td><td>France</td><td>Paris</td></tr>
+<tr><td>55</td><td>Germany</td><td>Berlin</td></tr>
+
+<tr><td>56</td><td>Greece</td><td>Athens</td></tr>
+<tr><td>57</td><td>Hungary</td><td>Budapest</td></tr>
+<tr><td>58</td><td>India</td><td>New Delhi</td></tr>
+<tr><td>59</td><td>Indonesia</td><td>Jakarta</td></tr>
+<tr><td>60</td><td>Iran</td><td>Tehran</td></tr>
+
+<tr><td>61</td><td>Iraq</td><td>Baghdad</td></tr>
+<tr><td>62</td><td>Ireland</td><td>Dublin</td></tr>
+<tr><td>63</td><td>Israel</td><td>Jerusalem</td></tr>
+<tr><td>64</td><td>Italy</td><td>Rome</td></tr>
+<tr><td>65</td><td>Japan</td><td>Tokyo</td></tr>
+
+<tr><td>66</td><td>Kenya</td><td>Nairobi</td></tr>
+<tr><td>67</td><td>Kuwait</td><td>Kuwait City</td></tr>
+<tr><td>68</td><td>Malaysia</td><td>Kuala Lumpur</td></tr>
+<tr><td>69</td><td>Mexico</td><td>Mexico City</td></tr>
+<tr><td>70</td><td>Nepal</td><td>Kathmandu</td></tr>
+
+<tr><td>71</td><td>Netherlands</td><td>Amsterdam</td></tr>
+<tr><td>72</td><td>New Zealand</td><td>Wellington</td></tr>
+<tr><td>73</td><td>Nigeria</td><td>Abuja</td></tr>
+<tr><td>74</td><td>Norway</td><td>Oslo</td></tr>
+<tr><td>75</td><td>Pakistan</td><td>Islamabad</td></tr>
+
+<tr><td>76</td><td>Philippines</td><td>Manila</td></tr>
+<tr><td>77</td><td>Poland</td><td>Warsaw</td></tr>
+<tr><td>78</td><td>Portugal</td><td>Lisbon</td></tr>
+<tr><td>79</td><td>Qatar</td><td>Doha</td></tr>
+<tr><td>80</td><td>Russia</td><td>Moscow</td></tr>
+
+<tr><td>81</td><td>Saudi Arabia</td><td>Riyadh</td></tr>
+<tr><td>82</td><td>Singapore</td><td>Singapore</td></tr>
+<tr><td>83</td><td>South Africa</td><td>Pretoria</td></tr>
+<tr><td>84</td><td>South Korea</td><td>Seoul</td></tr>
+<tr><td>85</td><td>Spain</td><td>Madrid</td></tr>
+
+<tr><td>86</td><td>Sri Lanka</td><td>Sri Jayawardenepura Kotte</td></tr>
+<tr><td>87</td><td>Sweden</td><td>Stockholm</td></tr>
+<tr><td>88</td><td>Switzerland</td><td>Bern</td></tr>
+<tr><td>89</td><td>Thailand</td><td>Bangkok</td></tr>
+<tr><td>90</td><td>Turkey</td><td>Ankara</td></tr>
+
+<tr><td>91</td><td>Ukraine</td><td>Kyiv</td></tr>
+<tr><td>92</td><td>United Arab Emirates</td><td>Abu Dhabi</td></tr>
+<tr><td>93</td><td>United Kingdom</td><td>London</td></tr>
+<tr><td>94</td><td>United States</td><td>Washington, D.C.</td></tr>
+<tr><td>95</td><td>Vietnam</td><td>Hanoi</td></tr>
+
+<tr><td>96</td><td>Yemen</td><td>Sana'a</td></tr>
+<tr><td>97</td><td>Zambia</td><td>Lusaka</td></tr>
+<tr><td>98</td><td>Zimbabwe</td><td>Harare</td></tr>
+
+</tbody>
+</table>
+</div>
+
+<script>
+document.getElementById("search").addEventListener("keyup", function() {
+let filter = this.value.toLowerCase();
+let rows = document.querySelectorAll("#countryTable tbody tr");
+
+rows.forEach(row => {
+let text = row.textContent.toLowerCase();
+row.style.display = text.includes(filter) ? "" : "none";
+});
+});
+</script>
+
+</body>
+</html>

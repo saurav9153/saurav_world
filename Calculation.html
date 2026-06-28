@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculation</title>
+
+<style>
+    *{
+        box-sizing:border-box;
+        margin:0;
+        padding:0;
+        font-family:Arial, sans-serif;
+    }
+
+    body{
+        background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+        color:#fff;
+        padding:20px;
+    }
+
+    .container{
+        max-width:900px;
+        margin:auto;
+    }
+
+    h1{
+        text-align:center;
+        margin-bottom:20px;
+        color:#fbbf24;
+    }
+
+    .card{
+        background:#ffffff15;
+        backdrop-filter:blur(8px);
+        border-radius:15px;
+        padding:20px;
+        margin-bottom:25px;
+        border:1px solid #ffffff20;
+    }
+
+    h2{
+        color:#38bdf8;
+        margin-bottom:15px;
+    }
+
+    label{
+        display:block;
+        margin-top:12px;
+        margin-bottom:5px;
+    }
+
+    input{
+        width:100%;
+        padding:10px;
+        border:none;
+        border-radius:8px;
+        font-size:16px;
+    }
+
+    button{
+        margin-top:15px;
+        padding:12px 20px;
+        border:none;
+        border-radius:8px;
+        background:#f59e0b;
+        color:#fff;
+        font-size:16px;
+        cursor:pointer;
+    }
+
+    button:hover{
+        background:#d97706;
+    }
+
+    .result{
+        margin-top:15px;
+        background:#00000030;
+        padding:15px;
+        border-radius:10px;
+        line-height:1.8;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Calculation</h1>
+   <h3 ><a href="Calculator.html" style="color:white">Calculator</a></h3>
+   
+
+    <!-- Viscosity Calculator -->
+    <div class="card">
+        <h2>Flow Cup Viscosity Calculator</h2>
+
+        <label>Flow Cup Constant A</label>
+        <input type="number" id="constantA" step="any">
+
+        <label>Flow Cup Constant B</label>
+        <input type="number" id="constantB" step="any">
+
+        <label>Flow Time (seconds)</label>
+        <input type="number" id="flowTime" step="any">
+
+        <button onclick="calculateViscosity()">Calculate Viscosity</button>
+
+        <div class="result" id="viscosityResult">
+            Enter values and click calculate.
+        </div>
+    </div>
+
+    <!-- Tensile Calculator -->
+    <div class="card">
+        <h2>Tensile Strength Calculator</h2>
+
+        <label>Dumbbell Thickness (mm)</label>
+        <input type="number" id="thickness" step="any">
+
+        <label>Dumbbell Width / Size (mm)</label>
+        <input type="number" id="width" step="any">
+
+        <label>Force at Break (kg)</label>
+        <input type="number" id="forceKg" step="any">
+
+        <label>Original Length (mm)</label>
+        <input type="number" id="originalLength" step="any">
+
+        <label>Final Length After Elongation (mm)</label>
+        <input type="number" id="finalLength" step="any">
+
+        <button onclick="calculateTensile()">Calculate Tensile Properties</button>
+
+        <div class="result" id="tensileResult">
+            Enter values and click calculate.
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+function calculateViscosity() {
+
+    let A = parseFloat(document.getElementById("constantA").value);
+    let B = parseFloat(document.getElementById("constantB").value);
+    let t = parseFloat(document.getElementById("flowTime").value);
+
+    if(isNaN(A) || isNaN(B) || isNaN(t)){
+        document.getElementById("viscosityResult").innerHTML =
+        "Please enter all values.";
+        return;
+    }
+
+    // Common flow cup equation
+    let viscosity = (A * t) - (B / t);
+
+    document.getElementById("viscosityResult").innerHTML =
+    "<b>Viscosity:</b> " + viscosity.toFixed(2) + " cSt";
+}
+
+function calculateTensile() {
+
+    let thickness = parseFloat(document.getElementById("thickness").value);
+    let width = parseFloat(document.getElementById("width").value);
+    let forceKg = parseFloat(document.getElementById("forceKg").value);
+    let originalLength = parseFloat(document.getElementById("originalLength").value);
+    let finalLength = parseFloat(document.getElementById("finalLength").value);
+
+    if(
+        isNaN(thickness) ||
+        isNaN(width) ||
+        isNaN(forceKg) ||
+        isNaN(originalLength) ||
+        isNaN(finalLength)
+    ){
+        document.getElementById("tensileResult").innerHTML =
+        "Please enter all values.";
+        return;
+    }
+
+    // Cross-sectional area
+    let area = thickness * width;
+
+    // Force conversion
+    let forceNewton = forceKg * 9.8;
+
+    // Tensile Strength MPa
+    let tensileMPa = forceNewton / area;
+
+    // Elongation %
+    let elongationPercent =
+        ((finalLength - originalLength) / originalLength) * 100;
+
+    // Stress at 500% elongation
+    let stress500 = tensileMPa * 5;
+
+    document.getElementById("tensileResult").innerHTML =
+    "<b>Cross Sectional Area:</b> " + area.toFixed(4) + " mm²<br>" +
+    "<b>Force at Break:</b> " + forceKg.toFixed(4) + " kg<br>" +
+    "<b>Force in Newton:</b> " + forceNewton.toFixed(4) + " N<br>" +
+    "<b>Tensile Strength:</b> " + tensileMPa.toFixed(4) + " MPa<br>" +
+    "<b>Elongation:</b> " + elongationPercent.toFixed(2) + " %<br>" +
+    "<b>Stress at 500% Elongation:</b> " + stress500.toFixed(4) + " MPa";
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Country & Capital Card Game</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    margin:0;
+    padding:20px;
+    color:white;
+    text-align:center;
+}
+
+h1{
+    margin-bottom:10px;
+}
+
+.score{
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.game-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+    gap:12px;
+    max-width:1000px;
+    margin:auto;
+}
+
+.card{
+    height:90px;
+    background:white;
+    color:#333;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:10px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+    box-shadow:0 4px 8px rgba(0,0,0,0.3);
+}
+
+.card:hover{
+    transform:scale(1.05);
+}
+
+.hidden{
+    background:#ff9800;
+    color:white;
+}
+
+.matched{
+    background:#4CAF50;
+    color:white;
+    pointer-events:none;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:5px;
+    margin:15px;
+    cursor:pointer;
+    font-size:16px;
+}
+</style>
+</head>
+<body>
+
+<h1>🌍 Country & Capital Memory Game 🇮🇳</h1>
+<p>Match each Country/State with its Capital</p>
+
+<div class="score">
+Score: <span id="score">0</span>
+</div>
+
+<button onclick="startGame()">🔄 New Game</button>
+
+<div class="game-container" id="gameBoard"></div>
+
+<script>
+
+const pairs = [
+["India","New Delhi"],
+["Japan","Tokyo"],
+["France","Paris"],
+["Australia","Canberra"],
+["USA","Washington D.C."],
+["Maharashtra","Mumbai"],
+["Rajasthan","Jaipur"],
+["Karnataka","Bengaluru"],
+["Tamil Nadu","Chennai"],
+["West Bengal","Kolkata"]
+];
+
+let selected=[];
+let score=0;
+
+function shuffle(array){
+    for(let i=array.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [array[i],array[j]]=[array[j],array[i]];
+    }
+}
+
+function startGame(){
+
+    score=0;
+    document.getElementById("score").textContent=score;
+
+    selected=[];
+
+    let cards=[];
+
+    pairs.forEach((pair,index)=>{
+        cards.push({
+            text:pair[0],
+            pair:index
+        });
+
+        cards.push({
+            text:pair[1],
+            pair:index
+        });
+    });
+
+    shuffle(cards);
+
+    const board=document.getElementById("gameBoard");
+    board.innerHTML="";
+
+    cards.forEach(card=>{
+
+        let div=document.createElement("div");
+        div.className="card hidden";
+        div.textContent="?";
+
+        div.dataset.text=card.text;
+        div.dataset.pair=card.pair;
+
+        div.onclick=function(){
+            flipCard(this);
+        }
+
+        board.appendChild(div);
+    });
+}
+
+function flipCard(card){
+
+    if(selected.length>=2 || !card.classList.contains("hidden"))
+        return;
+
+    card.classList.remove("hidden");
+    card.textContent=card.dataset.text;
+
+    selected.push(card);
+
+    if(selected.length===2){
+
+        setTimeout(()=>{
+
+            if(selected[0].dataset.pair===selected[1].dataset.pair){
+
+                selected[0].classList.add("matched");
+                selected[1].classList.add("matched");
+
+                score++;
+                document.getElementById("score").textContent=score;
+
+                if(score===pairs.length){
+                    setTimeout(()=>{
+                        alert("🎉 Congratulations! You matched all pairs.");
+                    },200);
+                }
+
+            }else{
+
+                selected[0].classList.add("hidden");
+                selected[1].classList.add("hidden");
+
+                selected[0].textContent="?";
+                selected[1].textContent="?";
+            }
+
+            selected=[];
+
+        },800);
+    }
+}
+
+startGame();
+
+</script>
+
+</body>
+</html>
