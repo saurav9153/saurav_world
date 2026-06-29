@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Percentage Calculator | Calculation Hub</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1d4ed8,#2563eb);
+padding:20px;
+color:white;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+margin-bottom:30px;
+color:#ddd;
+}
+
+.card{
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(10px);
+padding:20px;
+border-radius:15px;
+margin-bottom:25px;
+}
+
+.card h2{
+margin-bottom:15px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#22c55e;
+color:white;
+border:none;
+border-radius:8px;
+font-size:17px;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+background:#16a34a;
+}
+
+.result{
+margin-top:15px;
+font-size:20px;
+font-weight:bold;
+color:#fde047;
+}
+
+.footer{
+text-align:center;
+margin-top:30px;
+}
+
+.footer a{
+background:#2563eb;
+padding:10px 20px;
+color:white;
+text-decoration:none;
+border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📊 Percentage Calculator</h1>
+<p class="subtitle">Calculate percentages easily using multiple calculators.</p>
+
+<!-- Percentage of Number -->
+<div class="card">
+<h2>1. Percentage of a Number</h2>
+<input type="number" id="p1" placeholder="Percentage">
+<input type="number" id="n1" placeholder="Number">
+<button onclick="percentOf()">Calculate</button>
+<div class="result" id="r1"></div>
+</div>
+
+<!-- Marks Percentage -->
+<div class="card">
+<h2>2. Marks Percentage</h2>
+<input type="number" id="obtained" placeholder="Obtained Marks">
+<input type="number" id="total" placeholder="Total Marks">
+<button onclick="marksPercentage()">Calculate</button>
+<div class="result" id="r2"></div>
+</div>
+
+<!-- Increase -->
+<div class="card">
+<h2>3. Percentage Increase</h2>
+<input type="number" id="old1" placeholder="Old Value">
+<input type="number" id="new1" placeholder="New Value">
+<button onclick="increase()">Calculate</button>
+<div class="result" id="r3"></div>
+</div>
+
+<!-- Decrease -->
+<div class="card">
+<h2>4. Percentage Decrease</h2>
+<input type="number" id="old2" placeholder="Old Value">
+<input type="number" id="new2" placeholder="New Value">
+<button onclick="decrease()">Calculate</button>
+<div class="result" id="r4"></div>
+</div>
+
+<!-- Discount -->
+<div class="card">
+<h2>5. Discount Calculator</h2>
+<input type="number" id="price" placeholder="Original Price">
+<input type="number" id="discount" placeholder="Discount (%)">
+<button onclick="discountCalc()">Calculate</button>
+<div class="result" id="r5"></div>
+</div>
+
+<!-- GST -->
+<div class="card">
+<h2>6. GST Calculator</h2>
+<input type="number" id="amount" placeholder="Amount">
+<input type="number" id="gst" placeholder="GST %">
+<button onclick="gstCalc()">Calculate</button>
+<div class="result" id="r6"></div>
+</div>
+
+<div class="footer">
+<a href="index.html">⬅ Back to Home</a>
+</div>
+
+</div>
+
+<script>
+
+function percentOf(){
+let p=Number(document.getElementById("p1").value);
+let n=Number(document.getElementById("n1").value);
+document.getElementById("r1").innerHTML=(p*n/100).toFixed(2);
+}
+
+function marksPercentage(){
+let o=Number(document.getElementById("obtained").value);
+let t=Number(document.getElementById("total").value);
+document.getElementById("r2").innerHTML=((o/t)*100).toFixed(2)+" %";
+}
+
+function increase(){
+let o=Number(document.getElementById("old1").value);
+let n=Number(document.getElementById("new1").value);
+document.getElementById("r3").innerHTML=(((n-o)/o)*100).toFixed(2)+" %";
+}
+
+function decrease(){
+let o=Number(document.getElementById("old2").value);
+let n=Number(document.getElementById("new2").value);
+document.getElementById("r4").innerHTML=(((o-n)/o)*100).toFixed(2)+" %";
+}
+
+function discountCalc(){
+let p=Number(document.getElementById("price").value);
+let d=Number(document.getElementById("discount").value);
+let save=p*d/100;
+let finalPrice=p-save;
+
+document.getElementById("r5").innerHTML=
+"Discount = ₹"+save.toFixed(2)+"<br>Final Price = ₹"+finalPrice.toFixed(2);
+}
+
+function gstCalc(){
+let a=Number(document.getElementById("amount").value);
+let g=Number(document.getElementById("gst").value);
+
+let gstAmount=a*g/100;
+let total=a+gstAmount;
+
+document.getElementById("r6").innerHTML=
+"GST = ₹"+gstAmount.toFixed(2)+"<br>Total = ₹"+total.toFixed(2);
+}
+
+</script>
+
+</body>
+</html>

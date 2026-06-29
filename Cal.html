@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculation Hub</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+    color:#fff;
+}
+
+/* Header */
+
+header{
+    padding:25px;
+    text-align:center;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(10px);
+    box-shadow:0 5px 20px rgba(0,0,0,.3);
+}
+
+header h1{
+    font-size:42px;
+}
+
+header p{
+    margin-top:10px;
+    color:#ddd;
+}
+
+/* Hero */
+
+.hero{
+    text-align:center;
+    padding:50px 20px;
+}
+
+.hero h2{
+    font-size:36px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:18px;
+    color:#eee;
+}
+
+/* Search */
+
+.search-box{
+    width:90%;
+    max-width:500px;
+    margin:35px auto;
+}
+
+.search-box input{
+    width:100%;
+    padding:15px;
+    border:none;
+    outline:none;
+    border-radius:50px;
+    font-size:18px;
+}
+
+/* Cards */
+
+.container{
+    width:90%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+    padding-bottom:50px;
+}
+
+.card{
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+    transition:.4s;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.03);
+}
+
+.card h3{
+    margin:15px 0;
+}
+
+.card p{
+    color:#ddd;
+    min-height:65px;
+}
+
+.card a{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 25px;
+    background:#fff;
+    color:#1e3a8a;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:30px;
+    transition:.3s;
+}
+
+.card a:hover{
+    background:#ffd700;
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:rgba(255,255,255,.08);
+    margin-top:20px;
+}
+
+/* Responsive */
+
+@media(max-width:600px){
+
+header h1{
+font-size:30px;
+}
+
+.hero h2{
+font-size:26px;
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>🧮 Calculation Hub</h1>
+<p>All Essential Calculators in One Place</p>
+</header>
+
+<section class="hero">
+
+<h2>Welcome!</h2>
+
+<p>
+Calculate faster with our collection of useful calculators.
+Simple, responsive and easy to use.
+</p>
+
+<div class="search-box">
+<input type="text" id="search" placeholder="Search Calculator...">
+</div>
+
+</section>
+
+<div class="container" id="cards">
+
+<div class="card">
+<h1>⚖️</h1>
+<h3>BMI Calculator</h3>
+<p>Calculate your Body Mass Index and know your health category.</p>
+<a href="Bmi.html">Open</a>
+</div>
+
+<div class="card">
+<h1>🎂</h1>
+<h3>Age Calculator</h3>
+<p>Calculate your exact age in years, months, days and more.</p>
+<a href="Age.html">Open</a>
+</div>
+
+<div class="card">
+<h1>📊</h1>
+<h3>Percentage Calculator</h3>
+<p>Percentage, marks, increase, decrease and discount calculations.</p>
+<a href="Percentage.html">Open</a>
+</div>
+
+<div class="card">
+<h1>🧠</h1>
+<h3>IQ Estimator</h3>
+<p>Estimate IQ using chronological age and mental age.</p>
+<a href="Iq.html">Open</a>
+</div>
+
+<div class="card">
+<h1>🔄</h1>
+<h3>Unit Converter</h3>
+<p>Convert length, weight, temperature, speed, area and more.</p>
+<a href="Unit.html">Open</a>
+</div>
+
+</div>
+
+<footer>
+
+<p>© 2026 Calculation Hub ❤️</p>
+
+</footer>
+
+<script>
+
+const search=document.getElementById("search");
+
+search.addEventListener("keyup",function(){
+
+let filter=this.value.toUpperCase();
+
+let cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+let text=card.innerText.toUpperCase();
+
+card.style.display=text.includes(filter)?"block":"none";
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

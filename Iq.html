@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IQ Estimator | Calculation Hub</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1d4ed8,#2563eb);
+padding:20px;
+color:white;
+}
+
+.container{
+max-width:850px;
+margin:auto;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(12px);
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+h1{
+text-align:center;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+color:#ddd;
+margin-bottom:30px;
+}
+
+label{
+display:block;
+margin-bottom:8px;
+font-weight:bold;
+}
+
+input{
+width:100%;
+padding:12px;
+font-size:16px;
+border:none;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+button{
+width:100%;
+padding:15px;
+background:#22c55e;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#16a34a;
+}
+
+.result{
+display:none;
+margin-top:30px;
+background:white;
+color:#111827;
+padding:20px;
+border-radius:15px;
+}
+
+.result h2{
+margin-bottom:15px;
+}
+
+.iq{
+font-size:40px;
+font-weight:bold;
+color:#2563eb;
+text-align:center;
+margin:15px 0;
+}
+
+.category{
+font-size:24px;
+text-align:center;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:25px;
+background:white;
+color:black;
+}
+
+th,td{
+border:1px solid #ccc;
+padding:12px;
+text-align:center;
+}
+
+th{
+background:#2563eb;
+color:white;
+}
+
+.note{
+margin-top:25px;
+background:#FEF3C7;
+color:#111;
+padding:15px;
+border-radius:10px;
+line-height:1.6;
+}
+
+.footer{
+margin-top:30px;
+text-align:center;
+}
+
+.footer a{
+background:#2563eb;
+padding:10px 20px;
+border-radius:8px;
+color:white;
+text-decoration:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🧠 IQ Estimator</h1>
+
+<p class="subtitle">
+Estimate IQ using the traditional Mental Age and Chronological Age formula.
+</p>
+
+<label>Chronological Age (Years)</label>
+<input type="number" id="age" placeholder="Example: 12">
+
+<label>Mental Age (Years)</label>
+<input type="number" id="mental" placeholder="Example: 15">
+
+<button onclick="calculateIQ()">Calculate IQ</button>
+
+<div class="result" id="result">
+
+<h2>Your Estimated IQ</h2>
+
+<div class="iq" id="iqValue">0</div>
+
+<div class="category" id="category"></div>
+
+<p id="message"></p>
+
+</div>
+
+<h2 style="margin-top:35px;">IQ Classification</h2>
+
+<table>
+
+<tr>
+<th>IQ Range</th>
+<th>Classification</th>
+</tr>
+
+<tr>
+<td>130+</td>
+<td>Very Superior</td>
+</tr>
+
+<tr>
+<td>120–129</td>
+<td>Superior</td>
+</tr>
+
+<tr>
+<td>110–119</td>
+<td>High Average</td>
+</tr>
+
+<tr>
+<td>90–109</td>
+<td>Average</td>
+</tr>
+
+<tr>
+<td>80–89</td>
+<td>Low Average</td>
+</tr>
+
+<tr>
+<td>70–79</td>
+<td>Borderline</td>
+</tr>
+
+<tr>
+<td>Below 70</td>
+<td>Extremely Low</td>
+</tr>
+
+</table>
+
+<div class="note">
+
+<strong>Important:</strong><br><br>
+
+This calculator provides an educational estimate based on the classic formula:
+
+<b>IQ = (Mental Age ÷ Chronological Age) × 100</b>
+
+Modern IQ tests are standardized assessments conducted by qualified professionals. This estimator should not be used for diagnosis, educational placement, or clinical decisions.
+
+</div>
+
+<div class="footer">
+<a href="index.html">⬅ Back to Home</a>
+</div>
+
+</div>
+
+<script>
+
+function calculateIQ(){
+
+let age=parseFloat(document.getElementById("age").value);
+let mental=parseFloat(document.getElementById("mental").value);
+
+if(age<=0 || mental<=0 || isNaN(age) || isNaN(mental)){
+alert("Please enter valid ages.");
+return;
+}
+
+let iq=((mental/age)*100).toFixed(0);
+
+let category="";
+let message="";
+
+if(iq>=130){
+category="🌟 Very Superior";
+message="Estimated IQ is well above the average range.";
+}
+else if(iq>=120){
+category="⭐ Superior";
+message="Estimated IQ is above average.";
+}
+else if(iq>=110){
+category="🟢 High Average";
+message="Estimated IQ is slightly above average.";
+}
+else if(iq>=90){
+category="🔵 Average";
+message="Estimated IQ falls within the average range.";
+}
+else if(iq>=80){
+category="🟡 Low Average";
+message="Estimated IQ is below the average range.";
+}
+else if(iq>=70){
+category="🟠 Borderline";
+message="Professional assessment is recommended if there are concerns.";
+}
+else{
+category="🔴 Extremely Low";
+message="This estimate should not be considered a diagnosis. A standardized assessment by a qualified professional is recommended if needed.";
+}
+
+document.getElementById("result").style.display="block";
+document.getElementById("iqValue").innerHTML=iq;
+document.getElementById("category").innerHTML=category;
+document.getElementById("message").innerHTML=message;
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator | Calculation Hub</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1d4ed8,#2563eb);
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(12px);
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+h1{
+text-align:center;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+margin-bottom:30px;
+color:#ddd;
+}
+
+label{
+display:block;
+margin-bottom:8px;
+font-weight:bold;
+}
+
+input{
+width:100%;
+padding:14px;
+font-size:17px;
+border:none;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+button{
+width:100%;
+padding:15px;
+font-size:18px;
+background:#22c55e;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+button:hover{
+background:#16a34a;
+}
+
+.result{
+display:none;
+margin-top:30px;
+background:white;
+color:#111827;
+border-radius:15px;
+padding:20px;
+}
+
+.result h2{
+margin-bottom:15px;
+text-align:center;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-top:20px;
+}
+
+.card{
+background:#eff6ff;
+padding:18px;
+border-radius:12px;
+text-align:center;
+}
+
+.card h3{
+color:#2563eb;
+margin-bottom:10px;
+}
+
+.card p{
+font-size:22px;
+font-weight:bold;
+}
+
+.note{
+margin-top:25px;
+background:#fef9c3;
+color:#111;
+padding:15px;
+border-radius:10px;
+}
+
+.footer{
+margin-top:30px;
+text-align:center;
+}
+
+.footer a{
+background:#2563eb;
+color:white;
+padding:10px 20px;
+border-radius:8px;
+text-decoration:none;
+}
+
+@media(max-width:600px){
+
+.container{
+padding:20px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎂 Age Calculator</h1>
+
+<p class="subtitle">
+Calculate your exact age, total days lived, hours, and next birthday countdown.
+</p>
+
+<label>Select Your Date of Birth</label>
+
+<input type="date" id="dob">
+
+<button onclick="calculateAge()">Calculate Age</button>
+
+<div class="result" id="result">
+
+<h2>Your Age</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Years</h3>
+<p id="years">0</p>
+</div>
+
+<div class="card">
+<h3>Months</h3>
+<p id="months">0</p>
+</div>
+
+<div class="card">
+<h3>Days</h3>
+<p id="days">0</p>
+</div>
+
+<div class="card">
+<h3>Total Days</h3>
+<p id="totaldays">0</p>
+</div>
+
+<div class="card">
+<h3>Total Hours</h3>
+<p id="hours">0</p>
+</div>
+
+<div class="card">
+<h3>Next Birthday</h3>
+<p id="birthday">0</p>
+</div>
+
+</div>
+
+<div class="note">
+<strong>Interesting Fact:</strong>
+Your age is calculated based on today's date. Leap years are automatically considered by the JavaScript Date object.
+</div>
+
+</div>
+
+<div class="footer">
+<a href="index.html">⬅ Back to Home</a>
+</div>
+
+</div>
+
+<script>
+
+function calculateAge(){
+
+let dob=document.getElementById("dob").value;
+
+if(dob==""){
+alert("Please select your date of birth.");
+return;
+}
+
+let birthDate=new Date(dob);
+let today=new Date();
+
+let years=today.getFullYear()-birthDate.getFullYear();
+let months=today.getMonth()-birthDate.getMonth();
+let days=today.getDate()-birthDate.getDate();
+
+if(days<0){
+months--;
+let previousMonth=new Date(today.getFullYear(),today.getMonth(),0);
+days+=previousMonth.getDate();
+}
+
+if(months<0){
+years--;
+months+=12;
+}
+
+let diff=today-birthDate;
+
+let totalDays=Math.floor(diff/(1000*60*60*24));
+let totalHours=Math.floor(diff/(1000*60*60));
+
+let nextBirthday=new Date(today.getFullYear(),birthDate.getMonth(),birthDate.getDate());
+
+if(nextBirthday<today){
+nextBirthday.setFullYear(today.getFullYear()+1);
+}
+
+let birthdayCountdown=Math.ceil((nextBirthday-today)/(1000*60*60*24));
+
+document.getElementById("years").innerHTML=years;
+document.getElementById("months").innerHTML=months;
+document.getElementById("days").innerHTML=days;
+document.getElementById("totaldays").innerHTML=totalDays;
+document.getElementById("hours").innerHTML=totalHours.toLocaleString();
+document.getElementById("birthday").innerHTML=birthdayCountdown+" Days";
+
+document.getElementById("result").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>

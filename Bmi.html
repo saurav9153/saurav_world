@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Calculator | Calculation Hub</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1d4ed8,#2563eb);
+color:#fff;
+padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(10px);
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+h1{
+text-align:center;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+margin-bottom:30px;
+color:#ddd;
+}
+
+.input-group{
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin-bottom:8px;
+font-weight:bold;
+}
+
+input,select{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:15px;
+background:#22c55e;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+background:#16a34a;
+}
+
+.result{
+margin-top:30px;
+background:white;
+color:#111827;
+padding:20px;
+border-radius:15px;
+display:none;
+}
+
+.result h2{
+margin-bottom:15px;
+}
+
+.category{
+font-size:22px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.chart{
+margin-top:35px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+background:white;
+color:black;
+}
+
+th,td{
+padding:12px;
+border:1px solid #ccc;
+text-align:center;
+}
+
+th{
+background:#2563eb;
+color:white;
+}
+
+.note{
+margin-top:25px;
+background:#fef9c3;
+color:#111;
+padding:15px;
+border-radius:10px;
+}
+
+.footer{
+text-align:center;
+margin-top:30px;
+}
+
+.footer a{
+color:#fff;
+text-decoration:none;
+background:#2563eb;
+padding:10px 20px;
+border-radius:8px;
+display:inline-block;
+}
+
+@media(max-width:600px){
+
+.container{
+padding:20px;
+}
+
+h1{
+font-size:28px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⚖️ BMI Calculator</h1>
+<p class="subtitle">
+Calculate your Body Mass Index and know your health category.
+</p>
+
+<div class="input-group">
+<label>Height Unit</label>
+<select id="unit">
+<option value="cm">Centimeters (cm)</option>
+<option value="m">Meters (m)</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Height</label>
+<input type="number" id="height" placeholder="Enter Height">
+</div>
+
+<div class="input-group">
+<label>Weight (kg)</label>
+<input type="number" id="weight" placeholder="Enter Weight">
+</div>
+
+<button onclick="calculateBMI()">Calculate BMI</button>
+
+<div class="result" id="result">
+
+<h2>Your Result</h2>
+
+<p><strong>BMI :</strong> <span id="bmi"></span></p>
+
+<p class="category" id="category"></p>
+
+<p id="message"></p>
+
+</div>
+
+<div class="chart">
+
+<h2>BMI Classification</h2>
+
+<table>
+
+<tr>
+<th>BMI</th>
+<th>Category</th>
+</tr>
+
+<tr>
+<td>Below 18.5</td>
+<td>Underweight</td>
+</tr>
+
+<tr>
+<td>18.5 - 24.9</td>
+<td>Normal Weight</td>
+</tr>
+
+<tr>
+<td>25.0 - 29.9</td>
+<td>Overweight</td>
+</tr>
+
+<tr>
+<td>30.0 - 34.9</td>
+<td>Obesity Class I</td>
+</tr>
+
+<tr>
+<td>35.0 - 39.9</td>
+<td>Obesity Class II</td>
+</tr>
+
+<tr>
+<td>40 and Above</td>
+<td>Obesity Class III</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="note">
+
+<strong>Note:</strong>
+
+BMI is only a screening tool. It does not directly measure body fat or diagnose disease. Athletes and individuals with high muscle mass may have a higher BMI without having excess body fat.
+
+</div>
+
+<div class="footer">
+
+<a href="index.html">⬅ Back to Home</a>
+
+</div>
+
+</div>
+
+<script>
+
+function calculateBMI(){
+
+let height=parseFloat(document.getElementById("height").value);
+let weight=parseFloat(document.getElementById("weight").value);
+let unit=document.getElementById("unit").value;
+
+if(isNaN(height)||isNaN(weight)||height<=0||weight<=0){
+
+alert("Please enter valid height and weight.");
+
+return;
+
+}
+
+if(unit=="cm"){
+height=height/100;
+}
+
+let bmi=(weight/(height*height)).toFixed(2);
+
+let category="";
+let message="";
+
+if(bmi<18.5){
+category="🟡 Underweight";
+message="A balanced diet and professional advice may help you reach a healthy weight.";
+}
+else if(bmi<25){
+category="🟢 Normal Weight";
+message="Great! Your BMI falls within the recommended range.";
+}
+else if(bmi<30){
+category="🟠 Overweight";
+message="Regular exercise and healthy eating may help reduce health risks.";
+}
+else if(bmi<35){
+category="🔴 Obesity Class I";
+message="Consider consulting a healthcare professional for personalized guidance.";
+}
+else if(bmi<40){
+category="🔴 Obesity Class II";
+message="Medical advice is recommended to manage health risks.";
+}
+else{
+category="🚨 Obesity Class III";
+message="Please consult a healthcare professional as soon as possible.";
+}
+
+document.getElementById("result").style.display="block";
+
+document.getElementById("bmi").innerHTML=bmi;
+
+document.getElementById("category").innerHTML=category;
+
+document.getElementById("message").innerHTML=message;
+
+}
+
+</script>
+
+</body>
+</html>
