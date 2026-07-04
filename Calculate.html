@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Labour Law Calculators</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+header{
+    background:#0d47a1;
+    color:#fff;
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    margin-bottom:8px;
+}
+
+.container{
+    width:95%;
+    max-width:1200px;
+    margin:25px auto;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 5px 12px rgba(0,0,0,.15);
+}
+
+.card h2{
+    color:#0d47a1;
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-top:10px;
+    font-weight:bold;
+}
+
+input,select{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    width:100%;
+    margin-top:15px;
+    padding:12px;
+    background:#0d47a1;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#1565c0;
+}
+
+.result{
+    margin-top:15px;
+    background:#e3f2fd;
+    padding:12px;
+    border-radius:6px;
+    font-weight:bold;
+    color:#0d47a1;
+}
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+    margin-bottom:30px;
+}
+
+.box{
+    background:white;
+    text-align:center;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 3px 8px rgba(0,0,0,.15);
+}
+
+.box h3{
+    color:#0d47a1;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#0d47a1;
+    color:white;
+    margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Labour Law Calculators </h1>
+<p>EPF • ESI • Gratuity • Bonus • Leave • Salary • TDS • Income Tax</p>
+</header>
+
+<div class="container">
+
+<div class="dashboard">
+
+<div class="box">
+<h3>EPF</h3>
+<p>Employee Provident Fund</p>
+</div>
+
+<div class="box">
+<h3>ESI</h3>
+<p>Employee State Insurance</p>
+</div>
+
+<div class="box">
+<h3>Gratuity</h3>
+<p>Payment of Gratuity</p>
+</div>
+
+<div class="box">
+<h3>Bonus</h3>
+<p>Statutory Bonus</p>
+</div>
+
+<div class="box">
+<h3>Leave</h3>
+<p>Leave Encashment</p>
+</div>
+
+<div class="box">
+<h3>Salary</h3>
+<p>CTC & Net Salary</p>
+</div>
+
+<div class="box">
+<h3>TDS</h3>
+<p>Tax Deduction</p>
+</div>
+
+<div class="box">
+<h3>Income Tax</h3>
+<p>Old & New Regime</p>
+</div>
+
+</div>
+
+<div class="grid">
+
+<!-- EPF -->
+<div class="card">
+
+<h2>EPF Calculator</h2>
+
+<label>Basic Salary</label>
+<input type="number" id="epfSalary">
+
+<button onclick="epfCalc()">Calculate EPF</button>
+
+<div id="epfResult" class="result">
+Result will appear here
+</div>
+
+</div>
+
+<!-- ESI -->
+
+<div class="card">
+
+<h2>ESI Calculator</h2>
+
+<label>Gross Salary</label>
+
+<input type="number" id="esiSalary">
+
+<button onclick="esiCalc()">Calculate ESI</button>
+
+<div id="esiResult" class="result">
+Result will appear here
+</div>
+
+</div>
+
+</div>
+<!-- =================== GRATUITY CALCULATOR =================== -->
+
+<div class="card">
+
+<h2>Gratuity Calculator</h2>
+
+<label>Last Drawn Basic + DA (₹)</label>
+<input type="number" id="gratuitySalary">
+
+<label>Completed Years of Service</label>
+<input type="number" id="gratuityYears">
+
+<button onclick="gratuityCalc()">
+Calculate Gratuity
+</button>
+
+<div class="result" id="gratuityResult">
+Result will appear here
+</div>
+
+</div>
+
+
+<!-- =================== BONUS CALCULATOR =================== -->
+
+<div class="card">
+
+<h2>Bonus Calculator</h2>
+
+<label>Monthly Salary (₹)</label>
+<input type="number" id="bonusSalary">
+
+<label>Bonus Percentage</label>
+
+<select id="bonusPercent">
+<option value="8.33">8.33%</option>
+<option value="10">10%</option>
+<option value="15">15%</option>
+<option value="20">20%</option>
+</select>
+
+<button onclick="bonusCalc()">
+Calculate Bonus
+</button>
+
+<div class="result" id="bonusResult">
+Result will appear here
+</div>
+
+</div>
+<!-- ================= LEAVE ENCASHMENT ================= -->
+
+<div class="card">
+
+<h2>Leave Encashment Calculator</h2>
+
+<label>Monthly Basic Salary (₹)</label>
+<input type="number" id="leaveSalary">
+
+<label>Unused Leave Days</label>
+<input type="number" id="leaveDays">
+
+<button onclick="leaveCalc()">
+Calculate Leave Encashment
+</button>
+
+<div class="result" id="leaveResult">
+Result will appear here
+</div>
+
+</div>
+
+
+
+<!-- ================= SALARY / CTC ================= -->
+
+<div class="card">
+
+<h2>Salary / CTC Calculator</h2>
+
+<label>Monthly CTC (₹)</label>
+<input type="number" id="ctc">
+
+<label>Monthly Deductions (₹)</label>
+<input type="number" id="deduction" value="0">
+
+<button onclick="salaryCalc()">
+Calculate Salary
+</button>
+
+<div class="result" id="salaryResult">
+Result will appear here
+</div>
+
+</div>
+<!-- ===================== TDS CALCULATOR ===================== -->
+
+<div class="card">
+
+<h2>TDS Calculator</h2>
+
+<label>Annual Taxable Income (₹)</label>
+<input type="number" id="tdsIncome">
+
+<label>TDS Rate (%)</label>
+<input type="number" id="tdsRate" value="10">
+
+<button onclick="tdsCalc()">
+Calculate TDS
+</button>
+
+<div class="result" id="tdsResult">
+Result will appear here
+</div>
+
+</div>
+
+
+
+<!-- ===================== INCOME TAX CALCULATOR ===================== -->
+
+<div class="card">
+
+<h2>Income Tax Calculator</h2>
+
+<label>Annual Income (₹)</label>
+<input type="number" id="taxIncome">
+
+<button onclick="incomeTaxCalc()">
+Calculate Tax
+</button>
+
+<div class="result" id="taxResult">
+Result will appear here
+</div>
+
+</div>
+<footer>
+
+  CALCULATORS EPF ESI GRATUITY Labour Law | Saurav World © 2026
+
+</footer>
+
+<script>
+
+/* Remaining calculator functions will be added in the next parts */
+/* ==========================================
+   EPF CALCULATOR
+   Employee Contribution = 12%
+   Employer EPF = 3.67%
+   Employer EPS = 8.33%
+========================================== */
+
+function epfCalc(){
+
+    let basic = parseFloat(document.getElementById("epfSalary").value);
+
+    if(isNaN(basic) || basic<=0){
+        document.getElementById("epfResult").innerHTML =
+        "Please enter a valid Basic Salary.";
+        return;
+    }
+
+    // EPF calculations (wage ceiling not applied)
+    let employeePF = basic * 0.12;
+    let employerEPF = basic * 0.0367;
+    let employerEPS = basic * 0.0833;
+    let total = employeePF + employerEPF + employerEPS;
+
+    document.getElementById("epfResult").innerHTML =
+    "<b>Employee PF :</b> ₹ " + employeePF.toFixed(2) +
+    "<br><b>Employer EPF :</b> ₹ " + employerEPF.toFixed(2) +
+    "<br><b>Employer EPS :</b> ₹ " + employerEPS.toFixed(2) +
+    "<br><b>Total Monthly Contribution :</b> ₹ " + total.toFixed(2);
+
+}
+
+
+/* ==========================================
+   ESI CALCULATOR
+   Employee = 0.75%
+   Employer = 3.25%
+   Eligibility: Gross Salary ≤ ₹21,000/month
+========================================== */
+
+function esiCalc(){
+
+    let gross = parseFloat(document.getElementById("esiSalary").value);
+
+    if(isNaN(gross) || gross<=0){
+        document.getElementById("esiResult").innerHTML =
+        "Please enter a valid Gross Salary.";
+        return;
+    }
+
+    if(gross>21000){
+
+        document.getElementById("esiResult").innerHTML =
+        "<span style='color:red;'>Employee is not eligible for ESI because the gross salary exceeds ₹21,000 per month.</span>";
+
+        return;
+
+    }
+
+    let employeeESI = gross * 0.0075;
+    let employerESI = gross * 0.0325;
+    let totalESI = employeeESI + employerESI;
+
+    document.getElementById("esiResult").innerHTML =
+    "<b>Employee Contribution (0.75%) :</b> ₹ " + employeeESI.toFixed(2) +
+    "<br><b>Employer Contribution (3.25%) :</b> ₹ " + employerESI.toFixed(2) +
+    "<br><b>Total ESI Contribution :</b> ₹ " + totalESI.toFixed(2);
+
+}
+/* ==========================================
+   GRATUITY CALCULATOR
+   Formula:
+   (Last Drawn Salary × 15 × Years) / 26
+========================================== */
+
+function gratuityCalc(){
+
+    let salary =
+    parseFloat(document.getElementById("gratuitySalary").value);
+
+    let years =
+    parseFloat(document.getElementById("gratuityYears").value);
+
+    if(isNaN(salary) || isNaN(years) || salary<=0 || years<=0){
+
+        document.getElementById("gratuityResult").innerHTML =
+        "Please enter valid values.";
+
+        return;
+    }
+
+    if(years < 5){
+
+        document.getElementById("gratuityResult").innerHTML =
+        "<span style='color:red;'>Gratuity is generally payable after completing 5 years of continuous service (subject to applicable legal exceptions).</span>";
+
+        return;
+    }
+
+    let gratuity =
+    (salary * 15 * years) / 26;
+
+    document.getElementById("gratuityResult").innerHTML =
+    "<b>Estimated Gratuity :</b> ₹ " +
+    gratuity.toFixed(2);
+
+}
+
+
+
+/* ==========================================
+   BONUS CALCULATOR
+========================================== */
+
+function bonusCalc(){
+
+    let salary =
+    parseFloat(document.getElementById("bonusSalary").value);
+
+    let percent =
+    parseFloat(document.getElementById("bonusPercent").value);
+
+    if(isNaN(salary) || salary<=0){
+
+        document.getElementById("bonusResult").innerHTML =
+        "Please enter a valid salary.";
+
+        return;
+    }
+
+    let annualSalary = salary * 12;
+
+    let bonus =
+    annualSalary * percent / 100;
+
+    document.getElementById("bonusResult").innerHTML =
+    "<b>Annual Salary :</b> ₹ " +
+    annualSalary.toFixed(2) +
+
+    "<br><b>Bonus (" + percent + "%) :</b> ₹ " +
+    bonus.toFixed(2);
+
+}
+/* ==========================================
+   LEAVE ENCASHMENT CALCULATOR
+========================================== */
+
+function leaveCalc(){
+
+    let salary =
+    parseFloat(document.getElementById("leaveSalary").value);
+
+    let leave =
+    parseFloat(document.getElementById("leaveDays").value);
+
+    if(isNaN(salary) || isNaN(leave) || salary<=0 || leave<0){
+
+        document.getElementById("leaveResult").innerHTML =
+        "Please enter valid values.";
+
+        return;
+    }
+
+    let perDay = salary / 30;
+
+    let amount = perDay * leave;
+
+    document.getElementById("leaveResult").innerHTML =
+
+    "<b>Per Day Salary :</b> ₹ " +
+    perDay.toFixed(2) +
+
+    "<br><b>Leave Encashment :</b> ₹ " +
+    amount.toFixed(2);
+
+}
+
+
+
+/* ==========================================
+   SALARY / CTC CALCULATOR
+========================================== */
+
+function salaryCalc(){
+
+    let ctc =
+    parseFloat(document.getElementById("ctc").value);
+
+    let deduction =
+    parseFloat(document.getElementById("deduction").value);
+
+    if(isNaN(ctc) || ctc<=0){
+
+        document.getElementById("salaryResult").innerHTML =
+        "Please enter a valid Monthly CTC.";
+
+        return;
+    }
+
+    if(isNaN(deduction))
+        deduction = 0;
+
+    let basic = ctc * 0.40;
+
+    let hra = basic * 0.40;
+
+    let special =
+    ctc - basic - hra;
+
+    let inHand =
+    ctc - deduction;
+
+    document.getElementById("salaryResult").innerHTML =
+
+    "<b>Basic Salary :</b> ₹ " +
+    basic.toFixed(2) +
+
+    "<br><b>HRA :</b> ₹ " +
+    hra.toFixed(2) +
+
+    "<br><b>Special Allowance :</b> ₹ " +
+    special.toFixed(2) +
+
+    "<br><b>Total Deduction :</b> ₹ " +
+    deduction.toFixed(2) +
+
+    "<br><b>Estimated In-Hand Salary :</b> ₹ " +
+    inHand.toFixed(2);
+
+}
+/* ==========================================
+   TDS CALCULATOR
+========================================== */
+
+function tdsCalc(){
+
+    let income =
+    parseFloat(document.getElementById("tdsIncome").value);
+
+    let rate =
+    parseFloat(document.getElementById("tdsRate").value);
+
+    if(isNaN(income) || income<=0){
+
+        document.getElementById("tdsResult").innerHTML =
+        "Please enter a valid annual income.";
+
+        return;
+    }
+
+    if(isNaN(rate) || rate<0){
+
+        document.getElementById("tdsResult").innerHTML =
+        "Please enter a valid TDS rate.";
+
+        return;
+    }
+
+    let annualTDS = income * rate / 100;
+
+    let monthlyTDS = annualTDS / 12;
+
+    document.getElementById("tdsResult").innerHTML =
+
+    "<b>Annual TDS :</b> ₹ " +
+    annualTDS.toFixed(2) +
+
+    "<br><b>Monthly TDS :</b> ₹ " +
+    monthlyTDS.toFixed(2);
+
+}
+
+
+
+/* ==========================================
+   INCOME TAX CALCULATOR
+   Simplified Example
+========================================== */
+
+function incomeTaxCalc(){
+
+    let income =
+    parseFloat(document.getElementById("taxIncome").value);
+
+    if(isNaN(income) || income<=0){
+
+        document.getElementById("taxResult").innerHTML =
+        "Please enter a valid annual income.";
+
+        return;
+    }
+
+    let oldTax = 0;
+    let newTax = 0;
+
+    /* OLD REGIME (simplified) */
+
+    if(income <= 250000){
+
+        oldTax = 0;
+
+    }else if(income <= 500000){
+
+        oldTax = (income-250000)*0.05;
+
+    }else if(income <=1000000){
+
+        oldTax = 12500 + (income-500000)*0.20;
+
+    }else{
+
+        oldTax = 112500 + (income-1000000)*0.30;
+
+    }
+
+    /* NEW REGIME (simplified) */
+
+    if(income <=400000){
+
+        newTax = 0;
+
+    }else if(income <=800000){
+
+        newTax = (income-400000)*0.05;
+
+    }else if(income <=1200000){
+
+        newTax = 20000 + (income-800000)*0.10;
+
+    }else{
+
+        newTax = 60000 + (income-1200000)*0.15;
+
+    }
+
+    document.getElementById("taxResult").innerHTML =
+
+    "<b>Estimated Old Regime Tax :</b> ₹ " +
+    oldTax.toFixed(2) +
+
+    "<br><b>Estimated New Regime Tax :</b> ₹ " +
+    newTax.toFixed(2) +
+
+    "<br><br><b>Suggestion :</b> " +
+
+    (oldTax < newTax ?
+    "Old Regime appears lower." :
+    "New Regime appears lower.");
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Labour Law Quiz Part 9C-2</title>
+<style>
+body{font-family:Arial;background:#1434A4;margin:20px}
+#app{max-width:850px;margin:auto;background:#fff;padding:20px;border-radius:10px}
+#palette button{width:40px;height:40px;margin:3px}
+.question{font-size:22px;margin:15px 0}
+.option{display:block;padding:10px;border:1px solid #ccc;border-radius:6px;margin:8px 0}
+.progress{height:20px;background:#ddd;border-radius:10px;overflow:hidden}
+.bar{height:100%;width:0;background:green}
+</style>
+</head>
+<body>
+<div id="app">
+<h1>Indian Labour Law Quiz</h1>
+<div style="display:flex;justify-content:space-between"><b id="count"></b><b id="timer"></b></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div id="palette"></div>
+<div class="question" id="q"></div>
+<div id="opts"></div>
+<button onclick="prevQ()">Previous</button>
+<button onclick="markReview()">Mark for Review</button>
+<button onclick="nextQ()">Next</button>
+<button onclick="submitQuiz()">Submit</button>
+<div id="result"></div>
+</div>
+<script>
+const qs=[
+["EPF stands for?",["Employees Pension Fund","Employees Provident Fund","Employee Protection Fund","Employment Pension Finance"],1],
+["Employee EPF contribution is generally?",["10%","12%","15%","8%"],1],
+["ESI mainly provides?",["Medical Benefits","Pension Only","Gratuity","Tax Relief"],0],
+["Gratuity becomes payable after?",["2","3","5","10"],2],
+["Minimum statutory bonus?",["5%","8.33%","10%","20%"],1],
+["Maximum statutory bonus?",["25%","10%","20%","15%"],2],
+["Weekly working hours?",["40","44","48","56"],2],
+["Overtime paid at?",["Normal","Double","Triple","Half"],1],
+["Gross salary means?",["After deductions","Before deductions","Basic only","Bonus only"],1],
+["Net salary means?",["Gross","Basic","After deductions","CTC"],2],
+["Retirement deduction?",["EPF","ESI","PT","TDS"],0],
+["Medical deduction?",["EPF","ESI","Bonus","Gratuity"],1],
+["Leave for illness?",["Casual","Sick","Earned","Maternity"],1],
+["Earned Leave is also called?",["Privilege Leave","Medical","Holiday","Emergency"],0],
+["Salary slip is usually issued?",["Monthly","Weekly","Yearly","Never"],0],
+["HRA stands for?",["House Rent Allowance","Human Resource Act","Health Relief","Home Rebate"],0],
+["Basic salary is?",["Main component","Bonus","Tax","Overtime"],0],
+["Professional Tax levied by?",["State Govt","Central Govt","RBI","SEBI"],0],
+["Bonus Act enacted in?",["1948","1965","1972","2019"],1],
+["Code dealing with wages?",["Code on Wages, 2019","GST","Companies","Income Tax"],0]
+];
+let idx=0, ans=new Array(qs.length).fill(null), review=new Array(qs.length).fill(false), t=20*60;
+function renderPalette(){
+ palette.innerHTML='';
+ qs.forEach((_,i)=>{
+  let b=document.createElement('button');
+  b.textContent=i+1;
+  b.onclick=()=>{idx=i;render()};
+  if(ans[i]!=null) b.style.background='#9f9';
+  if(review[i]) b.style.background='#ff9';
+  if(i===idx) b.style.border='3px solid blue';
+  palette.appendChild(b);
+ });
+}
+function render(){
+ count.textContent=`Question ${idx+1} of ${qs.length}`;
+ q.textContent=qs[idx][0];
+ opts.innerHTML='';
+ qs[idx][1].forEach((o,i)=>{
+  let d=document.createElement('label');
+  d.className='option';
+  d.innerHTML=`<input type="radio" name="o" ${ans[idx]===i?'checked':''}> ${o}`;
+  d.querySelector('input').onchange=()=>{ans[idx]=i;updateProgress();renderPalette();};
+  opts.appendChild(d);
+ });
+ updateProgress();
+ renderPalette();
+}
+function updateProgress(){
+ let answered=ans.filter(x=>x!=null).length;
+ bar.style.width=(answered/qs.length*100)+'%';
+}
+function nextQ(){if(idx<qs.length-1){idx++;render();}}
+function prevQ(){if(idx>0){idx--;render();}}
+function markReview(){review[idx]=!review[idx];renderPalette();}
+function submitQuiz(){
+ let score=0, reviewHtml='<h3>Answer Review</h3><ol>';
+ qs.forEach((q,i)=>{
+   if(ans[i]===q[2]) score++;
+   reviewHtml += `<li><b>${q[0]}</b><br>Your answer: ${ans[i]==null?'Not answered':q[1][ans[i]]}<br>Correct answer: ${q[1][q[2]]}</li><br>`;
+ });
+ let pct=Math.round(score/qs.length*100);
+ result.innerHTML=`<h2>Score: ${score}/${qs.length}</h2><h2>Percentage: ${pct}%</h2>`+reviewHtml+'</ol>';
+}
+setInterval(()=>{if(t>0){t--;let m=Math.floor(t/60),s=t%60;timer.textContent=`Time Left: ${m}:${String(s).padStart(2,'0')}`;}else submitQuiz();},1000);
+render();
+</script>
+</body>
+</html>

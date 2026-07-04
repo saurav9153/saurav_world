@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Indian Labour Law</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f4f7fb;
+color:#222;
+line-height:1.6;
+}
+
+/* Header */
+
+header{
+background:linear-gradient(135deg,#0d47a1,#1976d2);
+color:white;
+padding:25px;
+text-align:center;
+box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+
+header h1{
+font-size:38px;
+}
+
+header p{
+margin-top:10px;
+font-size:18px;
+}
+
+/* Navigation */
+
+nav{
+background:white;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:15px;
+padding:15px;
+box-shadow:0 2px 6px rgba(0,0,0,.15);
+position:sticky;
+top:0;
+z-index:999;
+}
+
+nav a{
+text-decoration:none;
+color:#0d47a1;
+font-weight:600;
+padding:10px 18px;
+border-radius:8px;
+transition:.3s;
+}
+
+nav a:hover{
+background:#1976d2;
+color:white;
+}
+
+/* Hero */
+
+.hero{
+padding:60px 20px;
+text-align:center;
+background:linear-gradient(to right,#e3f2fd,#ffffff);
+}
+
+.hero h2{
+font-size:34px;
+margin-bottom:15px;
+color:#0d47a1;
+}
+
+.hero p{
+max-width:900px;
+margin:auto;
+font-size:18px;
+}
+
+.btn{
+display:inline-block;
+margin-top:30px;
+padding:14px 28px;
+background:#1565c0;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+transition:.3s;
+}
+
+.btn:hover{
+background:#0d47a1;
+}
+
+/* Container */
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+padding:40px 0;
+}
+
+.section-title{
+text-align:center;
+font-size:32px;
+color:#0d47a1;
+margin-bottom:35px;
+}
+/* FEATURE GRID */
+
+.feature-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.card{
+background:#fff;
+padding:30px;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(0,0,0,.1);
+transition:.3s;
+text-align:center;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.icon{
+font-size:55px;
+margin-bottom:15px;
+}
+
+.card h3{
+color:#0d47a1;
+margin-bottom:15px;
+}
+
+.card p{
+margin-bottom:20px;
+}
+
+.card a{
+text-decoration:none;
+font-weight:bold;
+color:#1565c0;
+}
+
+/* FACTS */
+
+.facts{
+background:#1565c0;
+color:white;
+padding:60px 20px;
+text-align:center;
+}
+
+.fact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:25px;
+margin-top:40px;
+max-width:1100px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.fact-box{
+background:rgba(255,255,255,.12);
+padding:30px;
+border-radius:15px;
+}
+
+.fact-box h3{
+font-size:42px;
+margin-bottom:10px;
+}
+
+/* FOOTER */
+
+footer{
+background:#0d47a1;
+color:white;
+padding:35px;
+text-align:center;
+margin-top:50px;
+}
+
+@media(max-width:768px){
+
+header h1{
+font-size:30px;
+}
+
+.hero h2{
+font-size:28px;
+}
+
+nav{
+gap:8px;
+}
+
+nav a{
+font-size:14px;
+padding:8px 12px;
+}
+
+
+}
+/* SEARCH */
+
+.search-box{
+max-width:700px;
+margin:auto;
+}
+
+.search-box input{
+width:100%;
+padding:16px;
+font-size:18px;
+border-radius:10px;
+border:2px solid #1976d2;
+outline:none;
+}
+
+/* TIMELINE */
+
+.timeline-section{
+background:#eef6ff;
+padding:60px 20px;
+}
+
+.timeline-section h2{
+text-align:center;
+color:#0d47a1;
+margin-bottom:40px;
+}
+
+.timeline{
+max-width:900px;
+margin:auto;
+border-left:5px solid #1976d2;
+padding-left:25px;
+}
+
+.timeline-item{
+background:white;
+padding:20px;
+margin-bottom:25px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.timeline-item h3{
+color:#1565c0;
+margin-bottom:8px;
+}
+
+/* TOP BUTTON */
+
+#topBtn{
+display:none;
+position:fixed;
+bottom:30px;
+right:25px;
+padding:15px;
+font-size:20px;
+border:none;
+border-radius:50%;
+background:#1565c0;
+color:white;
+cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+#topBtn:hover{
+background:#0d47a1;
+}
+/* TOOLBAR */
+
+.toolbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 20px;
+background:#e8f0ff;
+flex-wrap:wrap;
+}
+
+.toolbar button{
+padding:10px 18px;
+background:#1565c0;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.toolbar button:hover{
+background:#0d47a1;
+}
+
+.welcome-text{
+font-weight:600;
+color:#0d47a1;
+}
+
+/* NEWS */
+
+.news-ticker{
+background:#0d47a1;
+color:white;
+padding:10px;
+font-weight:600;
+}
+
+/* DARK MODE */
+
+.dark-mode{
+background:#121212;
+color:#f5f5f5;
+}
+
+.dark-mode header{
+background:#1f1f1f;
+}
+
+.dark-mode nav{
+background:#222;
+}
+
+.dark-mode nav a{
+color:white;
+}
+
+.dark-mode .card{
+background:#1e1e1e;
+color:white;
+}
+
+.dark-mode footer{
+background:#000;
+}
+
+.dark-mode .timeline-item{
+background:#1e1e1e;
+color:white;
+}
+
+.dark-mode .facts{
+background:#222;
+}
+
+.dark-mode .toolbar{
+background:#1b1b1b;
+}
+
+.dark-mode .welcome-text{
+color:#ffffff;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🇮🇳 Indian Labour Law Portal</h1>
+
+<p>
+Complete Guide to EPF, ESI, Gratuity, Factory Compliance,
+Corporate HR Policies & Labour Codes
+</p>
+
+</header>
+
+<nav>
+<!-- ================= TOP TOOLBAR ================= -->
+
+<div class="toolbar">
+
+<button id="themeBtn" onclick="toggleTheme()">
+🌙 Dark Mode
+</button>
+
+<div class="welcome-text">
+🇮🇳 Learn • Practice • Calculate • Stay Compliant
+</div>
+
+</div>
+
+<!-- ================= NEWS TICKER ================= -->
+
+<div class="news-ticker">
+
+<marquee behavior="scroll" direction="left" scrollamount="5">
+
+📢 Educational Portal |
+Learn EPF • ESI • Gratuity • Factory Compliance • Corporate HR • Labour Codes |
+Practice MCQs |
+Use Interactive Calculators |
+Explore Labour Law Concepts
+
+</marquee>
+
+</div>
+<a href="Leave2.html">Bonus</a>
+<a href="gratuity.html">Gratuity</a>
+<a href="Esi.html">EPF & ESI </a>
+<a href="Leave.html">Leave</a>
+<a href="wage.html">Wages</a>
+<a href="Corporate.html">Corporate</a>
+<a href="Calculate.html">Calculators</a>
+<a href="labour-law-quiz.html">MCQs</a>
+<a href="Faq.html">FAQ</a>
+
+</nav>
+
+<section class="hero">
+
+<h2>Learn Indian Labour Laws Professionally</h2>
+
+<p>
+
+This educational portal is designed for students, HR professionals,
+payroll executives, compliance officers, employers, and job seekers.
+It provides easy-to-understand explanations of Indian labour laws,
+including Employees' Provident Fund (EPF), Employees' State Insurance
+(ESI), Gratuity, Factory compliance, Corporate HR policies, wage-related
+concepts, and practical calculators to support learning and day-to-day
+compliance.
+
+</p>
+
+<a href="#" class="btn">Start Learning</a>
+
+</section>
+<!-- ================= HIGHLIGHTS ================= -->
+
+<section class="container">
+
+<h2 class="section-title">Portal Highlights</h2>
+
+<div class="feature-grid">
+
+<div class="card">
+<div class="icon">📚</div>
+<h3>Comprehensive Learning</h3>
+<p>
+Understand key labour law concepts with structured explanations,
+examples and practical guidance.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🧾</div>
+<h3>Acts & Compliance</h3>
+<p>
+Explore EPF, ESI, Gratuity, Factory compliance,
+wage-related topics and HR obligations.
+</p>
+</div>
+
+
+</section>
+<section class="container">
+
+<h2 class="section-title">
+Welcome to the Portal
+</h2>
+
+<p style="text-align:justify;font-size:18px;">
+
+Indian labour laws are designed to protect the rights, welfare, safety,
+and social security of employees while helping employers maintain legal
+compliance. This portal brings together important topics such as
+gratuity, provident fund, employee state insurance, payroll basics,
+factory compliance, labour codes, employee benefits, HR policies, and
+statutory obligations into one comprehensive learning resource.
+Each section includes simple explanations, practical examples,
+calculators, frequently asked questions, and self-assessment quizzes to
+help users understand the subject effectively.
+
+</p>
+
+</section>
+<!-- ================= FEATURES SECTION ================= -->
+
+<section class="container">
+
+<h2 class="section-title">Explore Learning Modules</h2>
+
+<div class="feature-grid">
+
+<div class="card">
+<div class="icon">💰</div>
+<h3>Gratuity</h3>
+<p>
+Understand eligibility, calculation formula, payment rules,
+nomination, forfeiture, tax treatment and important provisions under
+the Payment of Gratuity Act.
+</p>
+<a href="gratuity.html">Read More →</a>
+</div>
+
+<div class="card">
+<div class="icon">🏦</div>
+<h3>Employees' Provident Fund (EPF)</h3>
+<p>
+Learn EPF, EPS, EDLI, UAN, online claims, withdrawals,
+interest calculation, employer & employee contributions and pension.
+</p>
+<a href="epf.html">Read More →</a>
+</div>
+
+<div class="card">
+<div class="icon">🏥</div>
+<h3>Employees' State Insurance (ESI)</h3>
+<p>
+Know ESI eligibility, contribution rates, medical benefits,
+maternity, sickness, disablement and dependent benefits.
+</p>
+<a href="esi.html">Read More →</a>
+</div>
+
+<div class="card">
+<div class="icon">🏭</div>
+<h3>Factory Compliance</h3>
+<p>
+Study working hours, overtime, leave, welfare,
+health, safety measures and statutory registers applicable to factories.
+</p>
+<a href="factory-act.html">Read More →</a>
+</div>
+
+<div class="card">
+<div class="icon">🏢</div>
+<h3>Corporate HR Compliance</h3>
+<p>
+Learn payroll compliance, Shops & Establishments,
+leave management, POSH, minimum wages, bonus and labour records.
+</p>
+<a href="corporate-compliance.html">Read More →</a>
+</div>
+
+<div class="card">
+<div class="icon">📘</div>
+<h3>Labour Codes</h3>
+<p>
+Understand the four Labour Codes introduced to simplify
+Indian labour legislation and improve compliance.
+</p>
+<a href="#">Read More →</a>
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SEARCH SECTION ================= -->
+
+<section class="container">
+
+<h2 class="section-title">Search Learning Topics</h2>
+
+<div class="search-box">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search EPF, ESI, Gratuity, Factory Act..."
+onkeyup="searchCards()">
+
+</div>
+
+</section>
+<footer>
+<!-- ================= LABOUR LAW TIMELINE ================= -->
+
+<section class="timeline-section">
+
+<h2>Evolution of Indian Labour Laws</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<h3>1923 <p>Employees' Compensation Act enacted.</p></h3>
+<p>Employees' Compensation Act enacted.</p>
+</div>
+
+<div class="timeline-item">
+<h3>1948 <p>Factories Act and Employees' State Insurance Act introduced.</p></h3>
+
+</div>
+
+<div class="timeline-item">
+<h3>1952<p>Employees' Provident Fund & Miscellaneous Provisions Act enacted.</p></h3>
+
+</div>
+
+<div class="timeline-item">
+<h3>1972 <p>Payment of Gratuity Act implemented.</p></h3>
+
+</div>
+
+<div class="timeline-item">
+<h3>2019–2020 <p>Four Labour Codes passed to simplify labour legislation.</p></h3>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+</section>
+
+<!-- Scroll to Top -->
+
+<button onclick="topFunction()" id="topBtn">
+⬆
+</button>
+
+</footer>
+<script>
+  /* ================= DARK MODE ================= */
+
+function toggleTheme(){
+
+document.body.classList.toggle("dark-mode");
+
+const btn=document.getElementById("themeBtn");
+
+if(document.body.classList.contains("dark-mode")){
+
+btn.innerHTML="☀️ Light Mode";
+
+}else{
+
+btn.innerHTML="🌙 Dark Mode";
+
+}
+
+}
+
+/* ================= FADE-IN ANIMATION ================= */
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+entry.target.style.transform="translateY(0px)";
+
+}
+
+});
+
+});
+
+document.querySelectorAll(".card,.timeline-item,.fact-box").forEach(el=>{
+
+el.style.opacity="0";
+el.style.transform="translateY(40px)";
+el.style.transition="0.8s";
+
+observer.observe(el);
+
+});
+
+// Search Module
+
+function searchCards(){
+
+let input=document.getElementById("searchInput").value.toLowerCase();
+
+let cards=document.querySelectorAll(".card");
+
+cards.forEach(function(card){
+
+let text=card.innerText.toLowerCase();
+
+if(text.indexOf(input)>-1){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+}
+
+// Scroll Button
+
+let mybutton=document.getElementById("topBtn");
+
+window.onscroll=function(){
+
+if(document.body.scrollTop>300||
+
+document.documentElement.scrollTop>300){
+
+mybutton.style.display="block";
+
+}else{
+
+mybutton.style.display="block";
+
+}
+
+};
+
+function topFunction(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+</script>
+</body>
+</html>
